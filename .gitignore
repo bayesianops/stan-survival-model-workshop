@@ -1,3 +1,8 @@
 *
-!*.*
+!*.stan
+!*.R
+!*.pdf
+!*/
+solution/*
+!solution/*.stan
 *~
