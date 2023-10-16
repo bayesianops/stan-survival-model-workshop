@@ -38,6 +38,7 @@ install.packages(c("ggplot2", "gridExtra"))
 
 library(cmdstanr)
 library(posterior)
+install.packages("bayesplot")
 library(bayesplot)
 color_scheme_set("brightblue")
 
