@@ -104,6 +104,19 @@ curve(exp(-x * lambda), add = T, col = 'blue')
 
 rm(list = ls())
 
+## Simulate data
+lambda = 0.1
+
+N = 100
+p = runif(N)
+event_time = - log(1 - p) / lambda
+
+Y = Surv(event_time)
+plot(survfit(Y ~ 1))
+curve(exp(-x * lambda), add = T, col = 'blue')
+
+
+
 mod_1 = cmdstan_model("survival_1.stan")
 ## mod_1 = cmdstan_model("solution/survival_1.stan")
 mod_1$print()
@@ -128,7 +141,7 @@ lambda_draws = fit_1$draws("lambda")
 
 iter = sample(1:1000, 1); chain = sample(1:4, 1)
 plot(survfit(Surv(event_time_hat_draws[iter,chain,]) ~ 1), main = glue::glue("lambda = {lambda_draws[iter, chain, ]}; iter = {iter}, chain = {chain}"))
-
+curve(exp(-x * lambda), add = T, col = 'blue')
 
 
 ################################################################################
@@ -308,6 +321,18 @@ fit_4 = mod_4$sample(data = data_list,
                      parallel_chains = 4,
                      refresh = 500,
                      adapt_delta = 0.999)
+
+
+fit_4 = mod_4$sample(data = data_list,
+                     seed = 123,
+                     chains = 4,
+                     parallel_chains = 4,
+                     refresh = 500,
+                     adapt_delta = 0.999,
+                     max_treedepth = 14)
+mcmc_hist(fit_4$draws("mu_lambda")) + vline_at(mu_lambda, size = 1.5)
+mcmc_hist(fit_4$draws("sigma_lambda")) + vline_at(sigma_lambda, size = 1.5)
+mcmc_hist(fit_4$draws("beta")) + vline_at(beta, size = 1.5)
 
 
 
