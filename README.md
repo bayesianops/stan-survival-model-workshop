@@ -7,8 +7,8 @@ on October 16, 2023 as part of [R/Pharma
 
 ## Contents
 
-* Slides: [Building-a-Survival-Model-in-Stan.pdf]
-* R script to generate data and run models: [script.R]
+* Slides: [Building-a-Survival-Model-in-Stan.pdf](Building-a-Survival-Model-in-Stan.pdf)
+* R script to generate data and run models: [script.R](script.R)
 
 There are 4 examples, each in its own Stan program (`survival_1.stan`,
 `survival_2.stan`, `survival_3.stan`, `survival_4.stan`). These
