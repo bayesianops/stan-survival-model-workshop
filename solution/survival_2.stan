@@ -2,7 +2,7 @@
 
 data {
   int<lower = 0> N;
-  array[N] real event_time;
+  vector<lower = 0>[N] event_time;
   array[N] int<lower = 0, upper = 1> treatment;
 }
 parameters {

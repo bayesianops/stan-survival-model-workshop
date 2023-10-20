@@ -1,7 +1,7 @@
 // 3. Add censored
 data {
   int<lower = 0> N;
-  vector<lower = 0>[N] real event_time;
+  vector<lower = 0>[N] event_time;
   array[N] int<lower = 0, upper = 1> treatment;
   array[N] int<lower = 0, upper = 1> censored;
 }

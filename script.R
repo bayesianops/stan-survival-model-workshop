@@ -164,7 +164,7 @@ event_time = -log(1 - p) / (lambda * exp(treatment * beta))
 Y = Surv(event_time)
 plot(survfit(Y ~ treatment))
 curve(exp(-x * lambda), add = T, col = 'blue')
-curve(exp(-x * lambda * exp(beta)), add = T, col = 'green') 
+curve(exp(-x * lambda * exp(beta)), add = T, col = 'green')
 
 
 data_list = list(N = length(event_time), event_time = event_time, treatment = treatment)
@@ -176,10 +176,10 @@ mod_2 = cmdstan_model("survival_2.stan")
 mod_2$print()
 
 fit_2 = mod_2$sample(data = data_list,
-                   seed = 123,
-                   chains = 4,
-                   parallel_chains = 4,
-                   refresh = 500)
+                     seed = 123,
+                     chains = 4,
+                     parallel_chains = 4,
+                     refresh = 500)
 fit_2$summary()
 mcmc_hist(fit_2$draws("lambda")) + vline_at(lambda, size = 1.5)
 mcmc_hist(fit_2$draws("beta")) + vline_at(beta, size = 1.5)
@@ -194,7 +194,7 @@ iter = sample(1:1000, 1); chain = sample(1:4, 1)
 Y = Surv(event_time_hat_draws[iter,chain,])
 plot(survfit(Y ~ treatment), main = glue::glue("lambda = {lambda_draws[iter, chain, ]}, beta = {beta_draws[iter, chain, ]}; iter = {iter}, chain = {chain}"))
 curve(exp(-x * lambda), add = T, col = 'blue')
-curve(exp(-x * lambda * exp(beta)), add = T, col = 'green') 
+curve(exp(-x * lambda * exp(beta)), add = T, col = 'green')
 
 
 
@@ -225,7 +225,7 @@ data_list = list(N = length(event_time), event_time = event_time, treatment = tr
 Y = Surv(event_time, censored == 0)
 plot(survfit(Y ~ treatment))
 curve(exp(-x * lambda), add = T, col = 'blue')
-curve(exp(-x * lambda * exp(beta)), add = T, col = 'green') 
+curve(exp(-x * lambda * exp(beta)), add = T, col = 'green')
 
 
 
@@ -255,7 +255,7 @@ iter = sample(1:1000, 1); chain = sample(1:4, 1)
 Y = Surv(event_time_hat_draws[iter,chain,])
 plot(survfit(Y ~ treatment), main = glue::glue("lambda = {lambda_draws[iter, chain, ]}, beta = {beta_draws[iter, chain, ]}; iter = {iter}, chain = {chain}"))
 curve(exp(-x * lambda), add = T, col = 'blue')
-curve(exp(-x * lambda * exp(beta)), add = T, col = 'green') 
+curve(exp(-x * lambda * exp(beta)), add = T, col = 'green')
 
 
 
@@ -287,7 +287,7 @@ data_list = list(N = length(event_time), event_time = event_time, treatment = tr
 Y = Surv(event_time, censored == 0)
 plot(survfit(Y ~ treatment))
 curve(exp(-x * mu_lambda), add = T, col = 'blue')
-curve(exp(-x * mu_lambda * exp(beta)), add = T, col = 'green') 
+curve(exp(-x * mu_lambda * exp(beta)), add = T, col = 'green')
 
 
 
